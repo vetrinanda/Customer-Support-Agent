@@ -8,3 +8,5 @@ prompt_template = PromptTemplate(
     input_variables=["customer_name", "issue"],
     template="Hello {customer_name}, I'm here to help with your issue: {issue}. What can I do for you today?"
 )
+
+llm = GoogleGenAI(model="gpt-4")
