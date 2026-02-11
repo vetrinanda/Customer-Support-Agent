@@ -1,7 +1,7 @@
 from langgraph import StateGraph, StateNode, Edge
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenAI
-
+from typing import TypedDict
 
 # Define the prompt template for the LLM
 prompt_template = PromptTemplate(
