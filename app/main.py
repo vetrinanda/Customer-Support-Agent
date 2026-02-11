@@ -1,12 +1,31 @@
-from langgraph import StateGraph, StateNode, Edge
-from langchain_core.prompts import PromptTemplate
+from langgraph import StateGraph, END
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_google_genai import GoogleGenAI
-from typing import TypedDict
+from typing import TypedDict,Dict
+from langchain_core.runnables.graph import MermaidDrawMethod
+from langchain_core.output_parsers import StrOutputParser
+from dotenv import load_dotenv
+import os
+load_dotenv()
+class State(TypedDict):
+    query:str
+    category:str
+    sentiment:str
+    response:str
+parser=StrOutputParser()
+llm=GoogleGenAI(model_name="gemini-3.0-flash-preview",api_key=os.getenv("GOOGLE_API_KEY"))
 
-# Define the prompt template for the LLM
-prompt_template = PromptTemplate(
-    input_variables=["customer_name", "issue"],
-    template="Hello {customer_name}, I'm here to help with your issue: {issue}. What can I do for you today?"
-)
+def categorize(state:State) -> State:
+    '''
+    Categorize the query into a category
+    Technical, Billing, General
+    '''
+    prompt = ChatPromptTemplate.from_template("""
+    You are a customer support agent. Categorize the query into a category
+    Technical, Billing, General. Query: {query}
+    """)
+    chain=prompt | llm | parser
+    return {"category":chain.invoke({"query":state["query"]})}  
 
-llm = GoogleGenAI(model="gpt-4")
+
+
