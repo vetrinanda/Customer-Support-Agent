@@ -2,8 +2,9 @@ langgraph
 langchain
 langchain-google-genai
 fastapi
-uvicorn 
+uvicorn
 pydantic
-langchain_core
-langchain_community
-dotenv
+langchain-core
+langchain-community
+python-dotenv
+slowapi

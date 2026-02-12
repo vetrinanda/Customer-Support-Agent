@@ -12,6 +12,7 @@ class State(TypedDict):
     category:str
     sentiment:str
     response:str
+
 llm=ChatGoogleGenerativeAI(model="gemini-2.5-flash",api_key=os.getenv("GOOGLE_API_KEY"))
 
 def categorize(state:State) -> State:
