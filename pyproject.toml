@@ -13,5 +13,6 @@ dependencies = [
     "langchain-google-genai>=4.2.0",
     "langgraph>=1.0.8",
     "pydantic>=2.12.5",
+    "slowapi>=0.1.9",
     "uvicorn>=0.40.0",
 ]

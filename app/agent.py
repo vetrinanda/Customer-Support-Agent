@@ -76,7 +76,7 @@ def escalate(state:State) -> State:
     '''
     Escalate the query to a human agent
     '''
-    return {"response":"Escalated to human agent"} 
+    return {"response":"I will escalate your query to the Human and they will connect you as soon as possible"} 
 
 
 
